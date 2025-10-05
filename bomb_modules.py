@@ -80,14 +80,19 @@ def keypad():
 
     chosenLine = random.choice(LINES)
     values = random.sample(chosenLine, 4)
-    return " .. ".join(values)
+    return ", ".join(values)
 
+def wires():
+    wireColors = ["red", "yellow", "blue", "white", "black"]
+    wires = random.choices(wireColors, k= random.randint(3,6))
+    return " ".join(wires)
 
 class BombModules(StrEnum):
     KEYPAD = "keypad"
     ROUND_KEYPAD = "round keypad"
     WIRES = "wires"
     FORGET_ME_NOT = "forget-me-not"
+
 
 
 def get_bomb_module(module):
@@ -97,7 +102,7 @@ def get_bomb_module(module):
         case BombModules.ROUND_KEYPAD:
             raise NotImplementedError
         case BombModules.WIRES:
-            raise NotImplementedError
+            return wires()
         case BombModules.FORGET_ME_NOT:
             raise NotImplementedError
     raise ValueError

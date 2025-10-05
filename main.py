@@ -1,31 +1,33 @@
 import time
 import io
+import random
+
 from gtts import gTTS
+import pyttsx3
 import pygame
 import bomb_modules
 
 
-def speak(text):
+def speak(text, speed = 180):
     print(f"speaking \"{text}\"")
-    # create mp3 bytes in memory
-    tts = gTTS(text, lang="en")
-    mp3Fp = io.BytesIO()
-    tts.write_to_fp(mp3Fp)
-    mp3Fp.seek(0)
-
-    # initialize pygame mixer (use default settings)
-    # you can adjust frequency/size/channels/buffer if needed
-    pygame.mixer.init()
-    # Try to load from file-like object (namehint 'mp3' helps some builds)
-    pygame.mixer.music.load(mp3Fp, "mp3")
-    pygame.mixer.music.play()
-
-    # wait until playback finishes
-    while pygame.mixer.music.get_busy():
-        time.sleep(0.01)
+    engine = pyttsx3.init()
+    engine.setProperty("rate", speed)
+    engine.say(text)
+    engine.runAndWait()
+    time.sleep(0.01)
 
 
 if __name__ == "__main__":
-    toRun = input("Module to Run: ")
-    toSpeak = bomb_modules.get_bomb_module(toRun)
-    speak(toSpeak)
+    wantToExit = False
+    while not wantToExit:
+        toRun = input("Module to Run: ")
+        if toRun.lower() in ["exit", "leave", "bye", "quit", "hasta la vista, baby"]:
+            wantToExit = True
+            if random.randint(1,2) == 1:
+                with open("DontLook", 'r', encoding='utf-8') as file:
+                    speak(file.read(), 300)
+            else:
+                speak("Bye bye")
+        else:
+            toSpeak = bomb_modules.get_bomb_module(toRun)
+            speak(toSpeak)
