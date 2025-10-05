@@ -92,6 +92,15 @@ class BombModules(StrEnum):
     ROUND_KEYPAD = "round keypad"
     WIRES = "wires"
     FORGET_ME_NOT = "forget-me-not"
+    BUTTON = "button"
+    SIMON_SAYS = "simon says"
+    WHOS_ON_FIRST = "whos on first"
+    MEMORY = "memory"
+    MORSE_CODE = "morse code"
+    COMPLICATED_WIRES = "complicated wires"
+    WIRE_SEQUENCES = "wire sequences"
+    MAZES = "mazes"
+    PASSWORDS = "passwords"
 
 
 
