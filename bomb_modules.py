@@ -31,7 +31,6 @@ class KeypadSymbol(StrEnum):
     N = "N"
     OMEGA = "omega"
 
-
 def keypad():
     LINES = [
             [KeypadSymbol.Q, 
@@ -101,8 +100,6 @@ class BombModules(StrEnum):
     WIRE_SEQUENCES = "wire sequences"
     MAZES = "mazes"
     PASSWORDS = "passwords"
-
-
 
 def get_bomb_module(module):
     match module:
